@@ -1,0 +1,99 @@
+/* ==========================================
+   1. MOBILE VIEW (Mobile-First Approach)
+   ========================================== */
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 0;
+    padding: 10px;
+}
+
+figure {
+    margin: 0;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+/* ==========================================
+   2. TABLET VIEW (min-width: 772px)
+   ========================================== */
+@media screen and (min-width: 772px) {
+    body {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    figure {
+        border-radius: 50%;
+        overflow: hidden;
+        aspect-ratio: 1 / 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Ang huling figure ay aabot sa dalawang columns */
+    figure:last-child {
+        grid-column: span 2;
+        border-radius: 20px; /* Optional para hindi masyadong pilit ang bilog kung span 2 */
+    }
+}
+
+
+/* ==========================================
+   3. LARGE SCREEN VIEW (min-width: 992px)
+   ========================================== */
+@media screen and (min-width: 992px) {
+    body {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    figure {
+        border-radius: 0; /* Alisin ang border radius */
+        aspect-ratio: auto;
+        display: block;
+    }
+
+    /* Bawat ikatlong figure ay aabot sa dalawang columns */
+    figure:nth-child(3n) {
+        grid-column: span 2;
+    }
+}
+
+
+/* ==========================================
+   4. ACCESSIBILITY: PREFERS-REDUCED-MOTION
+   ========================================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+
+/* ==========================================
+   5. ACCESSIBILITY: DARK MODE
+   ========================================== */
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #121212;
+    }
+
+    figure {
+        background-color: #1e1e1e;
+        color: #ffeb3b; /* Lighter/yellowish font color */
+        border-color: #000000;
+    }
+}
